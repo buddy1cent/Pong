@@ -18,8 +18,8 @@ public class Tecka{
         this.barva = Color.WHITE;
         this.x = panel.getSIRKA_PANELU()/2;
         this.y = panel.getVYSKA_PANELU()/2;
-        this.smerX = 1;
-        this.smerY = 1;
+        this.smerX = 2;
+        this.smerY = 2;
         this.rychlost = 3;
     }  
     
