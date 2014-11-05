@@ -2,6 +2,7 @@ package pong;
 
 import java.awt.Graphics;
 import java.awt.Color;
+import java.awt.Rectangle;
 
 public class Tecka{
     
@@ -22,9 +23,24 @@ public class Tecka{
         this.rychlost = 3;
     }  
     
+    public int getX(){
+        return this.x;
+    }
+    
+    public int getY(){
+        return this.y;
+    }
+    
+    public Rectangle getOkraje() {
+        return new Rectangle(x, y, VELIKOST_TECKY, VELIKOST_TECKY);
+    }
+    
     public void vykresliSe(Graphics g) {
         g.setColor(barva);
         g.fillRect(x, y, VELIKOST_TECKY, VELIKOST_TECKY);
+    }
+    public void turn(){
+        smerX = -smerX;
     }
     
     public void move(){

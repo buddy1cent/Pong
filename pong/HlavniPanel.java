@@ -3,6 +3,7 @@ package pong;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -55,9 +56,20 @@ class HlavniPanel extends JPanel {
     private class PosluchacCasovace implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+
+            Rectangle okrajeDesky1 = deska1.getOkraje();
+            Rectangle okrajeDesky2 = deska2.getOkraje();
+            Rectangle okrajeTecky = tecka.getOkraje();
+            
+            if (okrajeDesky1.intersects(okrajeTecky))
+                tecka.turn();
+            if (okrajeDesky2.intersects(okrajeTecky))
+                tecka.turn();
+
             tecka.move();
             deska1.move();
             deska2.move();
+
             repaint();
         }
     }

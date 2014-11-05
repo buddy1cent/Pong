@@ -2,6 +2,7 @@ package pong;
 
 import java.awt.Graphics;
 import java.awt.Color;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -14,8 +15,8 @@ public class Deska implements KeyListener{
     private int rychlost;
     private int smer;
     private Color barva;
-    private final int SIRKA_OBDELNIKA = 15;
-    private final int VYSKA_OBDELNIKA = 60;
+    private final int SIRKA_OBDELNIKU = 15;
+    private final int VYSKA_OBDELNIKU = 60;
     
     public Deska(HlavniPanel panel,int hrac,int nahoru,int dolu){
         this.rychlost = 2;
@@ -29,7 +30,7 @@ public class Deska implements KeyListener{
            this.barva = Color.BLUE;
         }
         else{
-            this.x = panel.getSIRKA_PANELU() - SIRKA_OBDELNIKA;
+            this.x = panel.getSIRKA_PANELU() - SIRKA_OBDELNIKU;
             this.barva = Color.RED;
         }
         this.y = 0;
@@ -37,18 +38,22 @@ public class Deska implements KeyListener{
     
     public void vykresliSe(Graphics g) {
         g.setColor(barva);
-        g.fillRect(x, y, SIRKA_OBDELNIKA, VYSKA_OBDELNIKA);
+        g.fillRect(x, y, SIRKA_OBDELNIKU, VYSKA_OBDELNIKU);
     }
     
     public void move(){
         y+= smer;
         
-        if (y >= panel.getVYSKA_PANELU()- (VYSKA_OBDELNIKA + 1)) {
-            y = panel.getVYSKA_PANELU()- (VYSKA_OBDELNIKA + 1);
+        if (y >= panel.getVYSKA_PANELU()- (VYSKA_OBDELNIKU + 1)) {
+            y = panel.getVYSKA_PANELU()- (VYSKA_OBDELNIKU + 1);
         }
         if (y <= 0) {
             y = 0;
         }  
+    }
+    
+    public Rectangle getOkraje() {
+        return new Rectangle(x, y, SIRKA_OBDELNIKU, VYSKA_OBDELNIKU);
     }
     
     @Override
