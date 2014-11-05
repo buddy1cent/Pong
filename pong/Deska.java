@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pong;
 
 import java.awt.Graphics;
@@ -13,10 +8,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 
-/**
- *
- * @author BUDDY_1cent
- */
 public class Deska implements KeyListener{
     
     private HlavniPanel panel;
@@ -34,14 +25,13 @@ public class Deska implements KeyListener{
         this.nahoru = nahoru;
         this.dolu = dolu;
         this.panel = panel;
-        System.out.println(panel.getSIRKA_PANELU());
         if(hrac == 1){
             
-           this.x = 10;//panel.getSIRKA_PANELU() / SIRKA_OBDELNIKA; 
+           this.x = panel.getSIRKA_PANELU() / 60; 
            this.barva = Color.BLUE;
         }
         else{
-            this.x = 600 - SIRKA_OBDELNIKA;//panel.getSIRKA_PANELU() - SIRKA_OBDELNIKA;
+            this.x = panel.getSIRKA_PANELU() - SIRKA_OBDELNIKA;
             this.barva = Color.RED;
         }
         this.y = 0;
@@ -85,17 +75,5 @@ public class Deska implements KeyListener{
     
     @Override
     public void keyTyped(KeyEvent e) {
-    }
-    
-    private class PosluchacCasovace implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            //co se ma stat
-           /* moveDot();
-            moveLine1();
-            moveLine2();
-            repaint();*/
-        }
-    }
-    
+    }    
 }
