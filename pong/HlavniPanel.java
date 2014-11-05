@@ -23,8 +23,8 @@ class HlavniPanel extends JPanel {
         this.tecka = new Tecka(this);
         
         this.deska1 = new Deska(this,1,KeyEvent.VK_W,KeyEvent.VK_S);
-        this.deska2 = new Deska(this,2,KeyEvent.VK_UP,KeyEvent.VK_DOWN);
-
+        this.deska2 = new Deska(this,2,KeyEvent.VK_UP,KeyEvent.VK_DOWN);  
+        
         this.addKeyListener(deska1);
         this.addKeyListener(deska2);
         
@@ -46,7 +46,7 @@ class HlavniPanel extends JPanel {
     
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-
+        
         tecka.vykresliSe(g);
         deska1.vykresliSe(g);
         deska2.vykresliSe(g);
