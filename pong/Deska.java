@@ -17,13 +17,19 @@ public class Deska implements KeyListener{
     private Color barva;
     private final int SIRKA_OBDELNIKU = 15;
     private final int VYSKA_OBDELNIKU = 60;
+    private String jmeno;
+    private int body;
+    private boolean pripraven;
     
-    public Deska(HlavniPanel panel,int hrac,int nahoru,int dolu){
-        this.rychlost = 2;
+    public Deska(HlavniPanel panel,int hrac,String jmeno,int nahoru,int dolu){
+        this.pripraven = false;
+        this.rychlost = 5;
         this.smer = 0;
         this.nahoru = nahoru;
         this.dolu = dolu;
         this.panel = panel;
+        this.jmeno = jmeno;
+        this.body = 0;
         if(hrac == 1){
             
            this.x = panel.getSIRKA_PANELU() / 60; 
@@ -33,7 +39,7 @@ public class Deska implements KeyListener{
             this.x = panel.getSIRKA_PANELU() - SIRKA_OBDELNIKU;
             this.barva = Color.RED;
         }
-        this.y = 0;
+        this.y = (panel.getVYSKA_PANELU()/2) - (VYSKA_OBDELNIKU/2);
     }  
     
     public void vykresliSe(Graphics g) {
@@ -51,9 +57,35 @@ public class Deska implements KeyListener{
             y = 0;
         }  
     }
+    public int getBody(){
+        return this.body;
+    }
+    
+    public void plusBod(){
+        this.body++;
+    }
+    
+    public String getJmeno(){
+        return this.jmeno;
+    }
+    
+    public int getRychlost(){
+        if(this.smer > 0)
+            return this.smer;
+        else return rychlost;
+    }
+    
+    public boolean jePripraven(){
+        return this.pripraven;
+    }
     
     public Rectangle getOkraje() {
         return new Rectangle(x, y, SIRKA_OBDELNIKU, VYSKA_OBDELNIKU);
+    }
+    
+    public void reset(){
+        this.y = (panel.getVYSKA_PANELU()/2) - (VYSKA_OBDELNIKU/2);
+        this.body = 0;
     }
     
     @Override
@@ -64,6 +96,9 @@ public class Deska implements KeyListener{
         else if(e.getKeyCode() == dolu){
             smer = rychlost;
         }
+        else if(e.getKeyCode() == KeyEvent.VK_SPACE){
+            pripraven = true;
+        }
     }
      
     @Override
@@ -73,7 +108,7 @@ public class Deska implements KeyListener{
         }
         else if(e.getKeyCode() == dolu){
             smer = 0;
-        } 
+        }
     }
     
     @Override
